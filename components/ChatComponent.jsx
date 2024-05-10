@@ -1,12 +1,14 @@
 // /components/ChatComponent.jsx
 
 import React, {useState} from 'react';
+import { useRouter } from "next/router";
 import MessageBox from "@/components/MessageBox";
 
 function ChatComponent(props) {
 	const [chatMessages, setChatMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [userInput, setUserInput] = useState('');
+	const router = useRouter();
 
 	const filterChatHistory = chatHistory => {
 		let filteredChatHistory = [];
@@ -91,6 +93,12 @@ function ChatComponent(props) {
 				placeholder="Type something..."
 				onKeyDown={handleKeyDown}
 			/>
+			<div className={'text-center text-sm text-gray-500 mt-2'}>
+			<button className="text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onClick={() => router.push("/")}>
+          Homepage
+        </button>
+			</div>
+
 		</div>
 	);
 }
